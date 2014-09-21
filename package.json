@@ -1,0 +1,16 @@
+{
+  "name": "trext-tree-walker",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.8.3",
+    "express": "^4.9.4",
+    "trext-components": "0.0.1",
+    "twilio": "^1.7.0",
+    "twilio-session": "0.0.1"
+  }
+}
