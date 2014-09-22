@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var twilioSession = require('twilio-session')
 var twilio = require('twilio')
-var treeWalker = require('./treeWalker')
-var tree = require('./tree')
+var treeWalker = require('./index')
+var tree = require('./exampleTree')
 var app = express()
 
 app.use(bodyParser())

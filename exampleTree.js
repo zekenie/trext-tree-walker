@@ -6,37 +6,35 @@ var tree = new Tree({
   name:'cats tree'
 });
 
-var catsQ = new Node({
+console.log(tree)
+
+tree.addNode(new Node({
   name: 'cats',
   text: 'do you like cats'
-});
+}), true);
 
-var yesCats = new Node({
+tree.addNode(new Node({
   name: 'yesResp',
   text: 'I like cats too! what is your favorite color?',
   media: 'http://masspictures.net/wp-content/uploads/2014/03/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg'
-})
+}))
 
-var noCats = new Node({
+
+tree.addNode(new Node({
   name: 'noResp',
   text: 'I hate you.'
-})
+}))
 
-var colorNode = new Node({
+tree.connect('cats','yesResp','yes')
+tree.connect('cats','noResp','no')
+
+tree.addNode(new Node({
   name:'color',
   text:'ok'
-});
+}))
 
-tree.addNode(catsQ,true)
-tree.addNode(yesCats)
-tree.addNode(noCats)
-tree.addNode(colorNode)
-
-catsQ.connect(yesCats,"yes")
-catsQ.connect(noCats,"no")
-
-yesCats.connect(colorNode,{
+tree.connect('yesResp','color',{
   comparator: 'otherwise'
-});
+})
 
 module.exports = tree;

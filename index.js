@@ -64,7 +64,8 @@ module.exports = function(config) {
     function(req,res,next) {
       if(req.node.connections.length === 0) {
         delete req.treeState.state
-        config.onComplete(req.phone);
+        if(typeof config.onComplete === 'function')
+          config.onComplete(req.phone);
       }
       next();
     },
