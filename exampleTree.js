@@ -6,7 +6,6 @@ var tree = new Tree({
   name:'cats tree'
 });
 
-console.log(tree)
 
 tree.addNode(new Node({
   name: 'cats',
