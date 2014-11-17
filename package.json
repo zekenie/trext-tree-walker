@@ -9,7 +9,7 @@
   "dependencies": {
     "body-parser": "^1.8.3",
     "express": "^4.9.4",
-    "trext-components": "0.0.2",
+    "trext-components": "0.1.0",
     "twilio": "^1.7.0",
     "twilio-session": "0.0.1"
   }

@@ -41,24 +41,28 @@ module.exports = function(config) {
     function(req,res,next) {
       //move on if first text
       if(req.treeStart) return next();
-      var nextNode = config.tree.nodes[req.treeState.state].next(req.body.Body)
-      if(!nextNode)
-        return next(new Error(error(config.tree.nodes[req.treeState.state])))
-      req.node = nextNode;
-      req.treeState.state = req.node.name
-      next();
+
+      config.tree.nodes[req.treeState.state].next(req.body.Body, function(err, nextNode) {
+        if(!nextNode)
+          return next(new Error(error(config.tree.nodes[req.treeState.state])))
+        req.node = nextNode;
+        req.treeState.state = req.node.name
+        next();
+      })
     },
 
     function(req,res,next) {
-      var resp = new twilio.TwimlResponse();
-      resp.message(function() {
-        this.body(req.node.text);
-        if(req.node.media)
-          this.media(req.node.media);
-      });
-      req.str = resp.toString();
-      console.log(req.str);
-      next();
+      req.node.getText(function(err,text) {
+        var resp = new twilio.TwimlResponse();
+        resp.message(function() {
+          this.body(text);
+          if(req.node.media)
+            this.media(req.node.media);
+        });
+        req.str = resp.toString();
+        console.log(req.str);
+        next();
+      })
     },
 
     function(req,res,next) {
